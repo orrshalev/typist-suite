@@ -1,0 +1,5 @@
+{ "dependencies": { "random-words": "^2.0.0" }, "name": "typist-suite-back", "module": "index.ts", "type": "module", "devDependencies": {
+  "bun-types": "latest"
+}, "peerDependencies": {
+  "typescript": "^5.0.0"
+} }
