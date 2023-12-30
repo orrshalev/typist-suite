@@ -1,4 +1,5 @@
-{ "dependencies": { "random-words": "^2.0.0" }, "name": "typist-suite-back", "module": "index.ts", "type": "module", "devDependencies": {
+{ "dependencies": { "random-words": "^2.0.0", "yargs-parser": "^21.1.1" }, "name": "typist-suite-back", "module": "index.ts", "type": "module", "devDependencies": {
+  "@types/yargs-parser": "^21.0.3",
   "bun-types": "latest"
 }, "peerDependencies": {
   "typescript": "^5.0.0"

@@ -1,22 +1,32 @@
 import { generate } from "random-words";
+import yargs from "yargs-parser";
 
-const args = Bun.argv.slice(2);
+const args = yargs(Bun.argv.slice(2), {
+    alias: {combination: ["c"], wordCount: ["w"]},
+    boolean: ["combination"],
+    number: ["wordCount"],
+    default: {wordCount: 20 }
 
-if (args.length < 1) {
-    console.error("Usage: bun run index.tx <letter> [num-words]")
+
+});
+
+if (args._.length < 1) {
+    console.error("Usage: bun run index.tx [--c] <letters> [--w num-words]")
     process.exit(1);
 }
 
-const letter = args[0];
-
-const DEFAULT_NUM_WORDS = 20;
-const num_words = args.length > 1 ? Number.parseInt(args[1]) : DEFAULT_NUM_WORDS;
+const letters = (args._[0] as string).split("");
 
 const words = [];
-while (words.length < num_words) {
+while (words.length < args.wordCount) {
     const word = generate();
-    if (word.includes(letter))
-        words.push(word);
+    if (args.c) {
+        if (letters.every(letter => word.includes(letter)))
+            words.push(word);
+    } else {
+        if (letters.some(letter => word.includes(letter)))
+            words.push(word);
+    }
 }
 
 console.log(words.join(" "));
